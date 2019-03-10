@@ -22,7 +22,7 @@
     import qs from 'qs';
 
 
-    axios.post( url, qs.strinify({
+    axios.post( url, qs.stringify({
         key: value  // 参数
     }) )
     .then(response => {

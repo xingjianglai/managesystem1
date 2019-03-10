@@ -14,7 +14,7 @@
                     <el-table-column prop="account" label="账户名">
                     </el-table-column>
                     <!-- 用户组 -->
-                    <el-table-column prop="userGroup" label="用户组">
+                    <el-table-column prop="usergroup" label="用户组">
                     </el-table-column>
                     <!-- 日期 -->
                     <el-table-column label="日期">
@@ -41,17 +41,19 @@
     export default {
         data() {
             return {
-                accountTableData: [
-                    {
-                        account: '幸江来',
-                        userGroup: '最强王者',
-                        ctime: '2019-3-9'
-                    }
-                ]
+                accountTableData: []
             }
         },
-        methods: {
-
+        //生命周期钩子函数
+        created() {
+         this.req.get('http://127.0.0.1:888/account/accountlist')
+         .then(response => {
+             //赋值 渲染表格
+             this.accountTableData = response.data
+         })
+         .catch(err => {
+             console.log(err)
+         })   
         }
     }
 </script>

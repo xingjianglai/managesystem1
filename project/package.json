@@ -7,6 +7,7 @@
     "build": "vue-cli-service build"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "element-ui": "^2.6.1",
     "mysql": "^2.16.0",
     "nodemon": "^1.18.10",

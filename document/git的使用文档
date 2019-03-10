@@ -16,3 +16,4 @@
     git config --global user.name "Your Name"
 
 
+git push https://github.com/xingjianglai/managesystem1.git/ master   

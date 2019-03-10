@@ -42,6 +42,8 @@
     </div>
 </template>
 <script>
+import qs from 'qs'
+console.log(qs);
     export default {
         data() {
             //自定义验证密码
@@ -108,13 +110,27 @@
                             password: this.accountForm.password,
                             userGroup:this.accountForm.userGroup
                         }
-                        console.log('账号和密码:', params)
-
-                        this.$message({
-                            type:'success',
-                            message:'添加成功'
+                        //把数据发送给后端
+                        this.req.post('http://127.0.0.1:888/account/accountadd',qs.stringify(params))
+                        .then(response => {
+                            //response.data 返回的成功数据
+                            console.log(response.data)
+                            let { code,reason } = response.data;
+                            if(code == 0){
+                                //弹成功提示
+                                this.$message({
+                                    type:'success',
+                                    message:reason
+                                })
+                                //跳转页面
+                                this.$router.push('/index/accountmanage');
+                            }else if(code == 1){
+                                this.$message.error(reason);
+                            }
                         })
-                        this.$router.push('/index/accountmanage')
+                        .catch(err => {
+                            console.log(err)
+                        })
 
                     } else {
                         console.log('请你滚出去');
